@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 
 import Button from "react-bootstrap/Button";
 import BookingTicketModal from "../../../components/BookingTicketModal/BookingTicketModal";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const MovieDetails = () => {
   const [modalShow, setModalShow] = useState(false);
   const location = useLocation();
-  const movieData = location.state.movieData;
+  const movieData = location.state?.movieData;
   //   const { name, language, premiered, image, averageRuntime, rating, id } = movieData;
   const originalImage = movieData?.image?.original;
   //   console.log(movieData);
+  if (movieData === null) {
+    return (
+      <div className="text-center my-5">
+        <Spinner></Spinner>
+      </div>
+    );
+  }
   return (
     <Container className="my-5 d-md-flex">
       <Fade left>

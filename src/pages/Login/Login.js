@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Container, Form, Row } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn, googleSignIn, gitgubSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,7 +25,7 @@ const Login = () => {
         // console.log(user);
         form.reset();
         setError("");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -40,7 +40,7 @@ const Login = () => {
         const user = res.user;
         console.log(user);
         setError("");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .catch((err) => setError(err.message));
   };
@@ -61,18 +61,20 @@ const Login = () => {
             <Form.Text className="text-danger">{error ? error : ""}</Form.Text>
           </Form.Group>
 
-          <Button className="px-5 mb-3 fw-semibold w-50 mx-auto" variant="primary" type="submit">
-            Login
-          </Button>
-          <p>
-            New to website? please
-            <Link to="/register" className="text-decoration-none ms-1">
-              Register
-            </Link>
-          </p>
+          <div className="w-50 mx-auto">
+            <Button className="px-5 mb-3 fw-semibold w-100" variant="primary" type="submit">
+              Login
+            </Button>
+            <p>
+              New to website? please
+              <Link to="/register" className="text-decoration-none ms-1">
+                Register
+              </Link>
+            </p>
+          </div>
         </Form>
         <Row className="mt-4 w-50 mx-auto">
-          <Button onClick={handleGoogleSignIn} className="fw-semibold px-2" variant="outline-primary">
+          <Button onClick={handleGoogleSignIn} className="fw-semibold px-2 " variant="outline-primary">
             <span className="d-flex align-items-center justify-content-center">
               <FaGoogle className="me-2 fw-semibold fs-5" />
               <span>Continue with Google </span>

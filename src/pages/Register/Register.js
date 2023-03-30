@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Button, Col, Container, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, Container, Row, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import "./Register.css";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser, googleSignIn, gitgubSignIn, updateUserProfile } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { createUser, googleSignIn } = useContext(AuthContext);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -60,16 +59,17 @@ const Register = () => {
           <Form.Group className="mb-3">
             <Form.Text className="text-danger">{error ? error : ""}</Form.Text>
           </Form.Group>
-
-          <Button className="px-5 mb-3 fw-semibold w-50 mx-auto" variant="primary" type="submit">
-            Register
-          </Button>
-          <p>
-            Already have account? please
-            <Link to="/login" className="text-decoration-none ms-1">
-              Login
-            </Link>
-          </p>
+          <div className="w-50 mx-auto">
+            <Button className="px-5 mb-3 fw-semibold w-100" variant="primary" type="submit">
+              Register
+            </Button>
+            <p>
+              Already have account? please
+              <Link to="/login" className="text-decoration-none ms-1">
+                Login
+              </Link>
+            </p>
+          </div>
         </Form>
         <Row className="mt-4 w-50 mx-auto ">
           <Button onClick={handleGoogleSignIn} className="fw-semibold" variant="outline-primary">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
+import Spinner from "../../../components/Spinner/Spinner";
 import MovieCard from "../MovieCard/MovieCard";
 
 const Movies = () => {
@@ -12,6 +13,13 @@ const Movies = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  if (movies.length === 0) {
+    return (
+      <div className="text-center my-5">
+        <Spinner></Spinner>
+      </div>
+    );
+  }
   return (
     <div className="my-5">
       <Container>

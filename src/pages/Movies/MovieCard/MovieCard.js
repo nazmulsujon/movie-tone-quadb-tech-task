@@ -7,14 +7,13 @@ import { useNavigate } from "react-router-dom";
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
 
-  const movieData = movie?.show;
   const { name, language, premiered, image, averageRuntime, rating, id } = movie?.show;
   const originalImage = image?.original
     ? image?.original
     : "https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg";
 
   const handleNavigate = () => {
-    navigate(`/movieDetails/${id}`, { state: { movieData } });
+    navigate(`/movieDetails/${id}`, { state: { movieData: movie?.show } });
   };
 
   return (

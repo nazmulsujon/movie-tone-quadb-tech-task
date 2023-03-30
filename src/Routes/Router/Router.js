@@ -5,6 +5,7 @@ import Login from "../../pages/Login/Login";
 import MovieDetails from "../../pages/Movies/MovieDetails/MovieDetails";
 import Movies from "../../pages/Movies/Movies/Movies";
 import Register from "../../pages/Register/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/movieDetails/:id",
-        element: <MovieDetails></MovieDetails>,
+        element: (
+          <PrivateRoute>
+            <MovieDetails></MovieDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
