@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { toast } from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const BookingTicketModal = (props) => {
@@ -14,6 +15,7 @@ const BookingTicketModal = (props) => {
       movieLanguage: movieData?.language,
     };
     localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
+    toast.success("Booked Ticket Successfully!");
     props.onHide();
   };
 
